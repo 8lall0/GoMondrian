@@ -24,7 +24,7 @@ Then you check conditions about
 * Borders
 * Paddings
 * Goes straight on rows or columns and then if you want to "divide" a preesistent square.
-* 
+
 ## Contributing
 
 Feel free to send pull requests, fork or send me suggestions.
