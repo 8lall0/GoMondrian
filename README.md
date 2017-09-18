@@ -20,12 +20,12 @@ $ go get github.com/8lall0/GoMondrian
 
 ### How it works
 
-It select a random pixel onto an integer matrix with initial value of zero.
-
-Then you check conditions about
-* Borders
-* Paddings
-* Goes straight on rows or columns and then if you want to "divide" a preesistent square.
+It starts with an integer matrix filled with zeroes.
+Then it randomly select a cell (pixel) and checks about:
+* Borders (they must be not reachable from pixel plus surrounding padding)
+* Paddings (they must not reach other preesistent borders)
+Then it goes straight on rows or columns: if both are possible, it randomly selects one road.
+If you reach another border, it randomly selects if go across and "divide" another square.
 
 ## Contributing
 
