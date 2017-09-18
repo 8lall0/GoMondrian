@@ -1,17 +1,21 @@
+[![Build Status](https://travis-ci.org/8lall0/GoMondrian.svg?branch=master)](https://travis-ci.org/8lall0/GoMondrian)
+
 # GoMondrian
 
 A simple Piet Mondrian-like generator written in golang.
+
+![](screenshot/out.png)
 
 ## Getting Started
 
 ### Prerequisites
 
-You only need a working Go installation.
+You need a working Go installation. (1.7 or greater)
 
 ### Installing
 
 ```
-go get github.com/8lall0/GoMondrian
+$ go get github.com/8lall0/GoMondrian
 ```
 
 ### How it works
