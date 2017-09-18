@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/8lall0/GoMondrian.svg?branch=master)](https://travis-ci.org/8lall0/GoMondrian)
+[![Build Status](https://travis-ci.org/8lall0/GoMondrian.svg?branch=master)](https://travis-ci.org/8lall0/GoMondrian) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # GoMondrian
 
