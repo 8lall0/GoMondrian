@@ -1,3 +1,8 @@
+// Package gomondrian provides a simple random generator
+// for Piet Mondrian-like images. (https://en.wikipedia.org/wiki/Piet_Mondrian)
+//
+// It returns an *image.RGBA that you can handle with the standard tools of the
+// image standard package in Go.
 package gomondrian
 
 import (
@@ -15,6 +20,7 @@ var colors = []color.Color{
 	color.RGBA{255, 255, 0, 255},
 }
 
+// Generates the *image.RGBA that you can use with the standard image package.
 func Generate(width, height, padding, nDiv, nColor int) (img *image.RGBA, err error) {
 	// Bogus placeholder to define if possible to proceed
 	if (width-2)/(padding+1)*(height-2)/(padding+1) < nDiv {
@@ -158,6 +164,8 @@ func Generate(width, height, padding, nDiv, nColor int) (img *image.RGBA, err er
 	return
 }
 
+// Checks if within the padding there is another row.
+// If not, enables to grow in column.
 func checkCol(m [][]int, padding, x, y int) (flag bool) {
 	for k, flag := 1, true; k <= padding && flag; k++ {
 		if m[x][y+k] == 1 || m[x][y-k] == 1 {
@@ -168,6 +176,8 @@ func checkCol(m [][]int, padding, x, y int) (flag bool) {
 	return
 }
 
+// Checks if within the padding there is another column.
+// If not, enables to grow in row.
 func checkRow(m [][]int, padding, x, y int) (flag bool) {
 	for k, flag := 1, true; k <= padding && flag; k++ {
 		if m[x+k][y] == 1 || m[x-k][y] == 1 {

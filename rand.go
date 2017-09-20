@@ -20,6 +20,7 @@ func randInt(max, min int) int {
 	return min + rand.Intn(max-min)
 }
 
+// Generates a "truly" random bool value.
 func (b *boolgen) randBool() bool {
 	if b.remaining == 0 {
 		b.cache, b.remaining = b.src.Int63(), 63
