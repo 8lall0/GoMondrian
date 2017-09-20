@@ -18,6 +18,10 @@ You need a working Go installation. (1.7 or greater)
 $ go get github.com/8lall0/GoMondrian
 ```
 
+### Usage
+
+See the [example](cmd/main.go)
+
 ### How it works
 
 It starts with an integer matrix filled with zeroes.
