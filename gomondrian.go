@@ -15,10 +15,11 @@ var colors = []color.Color{
 	color.RGBA{255, 255, 0, 255},
 }
 
-func Generate(width, height, padding, nDiv, nColor int) (Image, error) {
+func Generate(width, height, padding, nDiv, nColor int) (img *image.RGBA, err error) {
 	// Bogus placeholder to define if possible to proceed
 	if (width-2)/(padding+1)*(height-2)/(padding+1) < nDiv {
-		return nil, errors.New("Too much divisions for your width|height.")
+		err = errors.New("Too much divisions for your width|height.")
+		return
 	}
 
 	m := [][]int{}
@@ -78,7 +79,7 @@ func Generate(width, height, padding, nDiv, nColor int) (Image, error) {
 				if m[j][y] == 1 && j > 0 {
 					intFlag = checkCol(m, padding, j-1, y)
 					if intFlag {
-						return r.randBool()
+						intFlag = r.randBool()
 					}
 				}
 				m[j][y] = 1
@@ -87,7 +88,7 @@ func Generate(width, height, padding, nDiv, nColor int) (Image, error) {
 				if m[j][y] == 1 && j < width-1 {
 					intFlag = checkCol(m, padding, j+1, y)
 					if intFlag {
-						return r.randBool()
+						intFlag = r.randBool()
 					}
 				}
 				m[j][y] = 1
@@ -100,18 +101,18 @@ func Generate(width, height, padding, nDiv, nColor int) (Image, error) {
 
 			for j, intFlag := y-1, true; j > 0 && intFlag; j-- {
 				if m[x][j] == 1 && j > 0 {
-					intFlag = CheckRow(m, padding, x, j-1)
+					intFlag = checkRow(m, padding, x, j-1)
 					if intFlag {
-						return r.randBool()
+						intFlag = r.randBool()
 					}
 				}
 				m[x][j] = 1
 			}
 			for j, intFlag := y+1, true; j < height && intFlag; j++ {
 				if m[x][j] == 1 && j < height-1 {
-					intFlag = CheckRow(m, padding, x, j+1)
+					intFlag = checkRow(m, padding, x, j+1)
 					if intFlag {
-						return r.randBool()
+						intFlag = r.randBool()
 					}
 				}
 				m[x][j] = 1
@@ -141,23 +142,23 @@ func Generate(width, height, padding, nDiv, nColor int) (Image, error) {
 			color := randInt(5, 2)
 			for j := xStart; j <= xEnd; j++ {
 				for k := yStart; k <= yEnd; k++ {
-					m[j][k] = color;
+					m[j][k] = color
 				}
 			}
 		}
 	}
 
-	img := image.NewRGBA(image.Rect(0, 0, width-2, height-2))
+	img = image.NewRGBA(image.Rect(0, 0, width-2, height-2))
 	for i := 1; i < width-1; i++ {
 		for j := 1; j < height-1; j++ {
 			img.Set(i-1, j-1, colors[m[i][j]])
 		}
 	}
 
-	return img
+	return
 }
 
-func checkCol(m [][]int, padding, x, y int) flag bool {
+func checkCol(m [][]int, padding, x, y int) (flag bool) {
 	for k, flag := 1, true; k <= padding && flag; k++ {
 		if m[x][y+k] == 1 || m[x][y-k] == 1 {
 			flag = false
@@ -167,7 +168,7 @@ func checkCol(m [][]int, padding, x, y int) flag bool {
 	return
 }
 
-func checkRow(m [][]int, padding, x, y int) flag bool {
+func checkRow(m [][]int, padding, x, y int) (flag bool) {
 	for k, flag := 1, true; k <= padding && flag; k++ {
 		if m[x+k][y] == 1 || m[x-k][y] == 1 {
 			flag = false
