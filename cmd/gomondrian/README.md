@@ -1,4 +1,4 @@
-# watcher command
+# gomondrian command
 
 # Installation
 
