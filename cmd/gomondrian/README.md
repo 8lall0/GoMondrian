@@ -9,7 +9,7 @@ go get -u github.com/8lall0/GoMondrian/...
 # Usage
 
 ```
-Usage of watcher:
+Usage of gomondrian:
   -c int
       set number of colored squares (default 30)
   -d int
