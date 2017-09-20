@@ -21,7 +21,10 @@ var colors = []color.Color{
 }
 
 // Generates the *image.RGBA that you can use with the standard image package.
-func Generate(width, height, padding, nDiv, nColor int) (img *image.RGBA, err error) {
+func Generate(w, h, padding, nDiv, nColor int) (img *image.RGBA, err error) {
+
+	width := w/2 + 2
+	height := h/2 + 2
 	// Bogus placeholder to define if possible to proceed
 	if (width-2)/(padding+1)*(height-2)/(padding+1) < nDiv {
 		err = errors.New("Too much divisions for your width|height.")
@@ -154,10 +157,13 @@ func Generate(width, height, padding, nDiv, nColor int) (img *image.RGBA, err er
 		}
 	}
 
-	img = image.NewRGBA(image.Rect(0, 0, width-2, height-2))
+	img = image.NewRGBA(image.Rect(0, 0, w-2, h-2))
 	for i := 1; i < width-1; i++ {
 		for j := 1; j < height-1; j++ {
-			img.Set(i-1, j-1, colors[m[i][j]])
+			img.Set((i-1)*2, (j-1)*2, colors[m[i][j]])
+			img.Set((i-1)*2, (j-1)*2+1, colors[m[i][j]])
+			img.Set((i-1)*2+1, (j-1)*2, colors[m[i][j]])
+			img.Set((i-1)*2+1, (j-1)*2+1, colors[m[i][j]])
 		}
 	}
 

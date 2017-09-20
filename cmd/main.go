@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	img, _ := gomondrian.Generate(300, 200, 7, 350, 30)
+	img, err := gomondrian.Generate(600, 400, 7, 350, 30)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
