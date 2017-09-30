@@ -20,7 +20,7 @@ $ go get github.com/8lall0/GoMondrian
 
 ### Usage
 
-See the [example](cmd/main.go)
+See the [example](cmd/gomondrian/main.go).
 
 ### How it works
 
