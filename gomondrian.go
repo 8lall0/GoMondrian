@@ -62,18 +62,11 @@ func Generate(w, h, padding, nDiv, nColor int) (img *image.RGBA, err error) {
 		}
 
 		if rowFlag {
-			for j := 1; j <= padding; j++ {
-				if m[x+j][y] == 1 || m[x-j][y] == 1 {
-					rowFlag = false
-				}
-			}
+			rowFlag = checkRow(m, padding, x, y)
 		}
+
 		if colFlag {
-			for j := 1; j <= padding; j++ {
-				if m[x][y+j] == 1 || m[x][y-j] == 1 {
-					colFlag = false
-				}
-			}
+			colFlag = checkCol(m, padding, x, y)
 		}
 
 		if rowFlag && colFlag {
@@ -173,7 +166,8 @@ func Generate(w, h, padding, nDiv, nColor int) (img *image.RGBA, err error) {
 // Checks if within the padding there is another row.
 // If not, enables to grow in column.
 func checkCol(m [][]int, padding, x, y int) (flag bool) {
-	for k, flag := 1, true; k <= padding && flag; k++ {
+	flag = true
+	for k := 1; k <= padding && flag; k++ {
 		if m[x][y+k] == 1 || m[x][y-k] == 1 {
 			flag = false
 		}
@@ -185,7 +179,8 @@ func checkCol(m [][]int, padding, x, y int) (flag bool) {
 // Checks if within the padding there is another column.
 // If not, enables to grow in row.
 func checkRow(m [][]int, padding, x, y int) (flag bool) {
-	for k, flag := 1, true; k <= padding && flag; k++ {
+	flag = true
+	for k := 1; k <= padding && flag; k++ {
 		if m[x+k][y] == 1 || m[x-k][y] == 1 {
 			flag = false
 		}
